@@ -45,8 +45,8 @@
         "api_key":"",
         "environment":"us-west1-gcp",
         "index_name":"news-index",
-        "dimension":"300"
+        "dimension":300
     },
-    "retention_days":"15"
+    "retention_days":15
   }
   
