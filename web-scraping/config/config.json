@@ -1,0 +1,52 @@
+{
+    "websites": {
+      "entertainment": [
+        {
+          "url": "https://www.pinkvilla.com/",
+          "selectors": {
+            "title": "h1.article-title",
+            "content": "div.article-description",  
+            "date": "span.date", 
+            "category": "span.category"
+          }
+        },
+        {
+          "url": "https://variety.com/",
+          "selectors": {
+            "title": "h1.headline",
+            "content": "div.article-body",
+            "date": "time.publish-date",  
+            "category": "span.category"
+          }
+        }
+      ],
+      "sports": [
+        {
+          "url": "https://www.espncricinfo.com/",
+          "selectors": {
+            "title": "h1.headline",   
+            "content": "div.article-body",  
+            "date": "span.timestamp", 
+            "category": "div.article-meta"  
+          }
+        },
+        {
+          "url": "https://www.espn.com/soccer/",
+          "selectors": {
+            "title": "h1.headline",
+            "content": "div.article-body", 
+            "date": "span.timestamp",  
+            "category": "div.article-meta" 
+          }
+        }
+      ]
+    },
+    "pinecone":{
+        "api_key":"",
+        "environment":"us-west1-gcp",
+        "index_name":"news-index",
+        "dimension":"300"
+    },
+    "retention_days":"15"
+  }
+  
