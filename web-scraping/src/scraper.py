@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 from src.utils import log_info
+from src.pinecone_manager import upload_to_pinecone
 
 with open('config/config.json') as f:
     config = json.load(f)
@@ -36,15 +37,16 @@ def scrape_site(url, selectors):
 
 
 def scrape_and_upload_data():
-    all_scraped_data=[]
-    for category,websites in config['websites'].items():
+    all_scraped_data = []
+    for category, websites in config['websites'].items():
         for website in websites:
-            log_info(f"Scraping{website['url']} in category {category}")
-            scraped_data=scrape_site(website['url'],website['selectors'])
+            log_info(f"Scraping {website['url']} in category {category}")
+            scraped_data = scrape_site(website['url'], website['selectors'])
             
             if scraped_data:
-                processed_data=process_data(scraped_data)
+                processed_data = process_data(scraped_data)
                 all_scraped_data.append(processed_data)
                 
-                upload_to_pinecone([processed_data],category)
-    return all_scraped_data            
+                # Upload to Pinecone based on category
+                upload_to_pinecone([processed_data], category)
+    return all_scraped_data
