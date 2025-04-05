@@ -2,7 +2,7 @@ import openai
 import hashlib
 from src.utils import log_info
 
-openai.api_key = 'your-openai-api-key'
+openai.api_key = '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'
 
 def generate_embeddings(text):
     """Generate text embeddings using OpenAI's API."""
@@ -16,20 +16,24 @@ def create_unique_id(url, pub_date):
 
 def process_data(scraped_data):
     """Process scraped data and prepare it for Pinecone upload."""
-    embedding = generate_embeddings(scraped_data['content'])
-    unique_id = create_unique_id(scraped_data['url'], scraped_data['date'])
-    
-    metadata = {
-        "title": scraped_data["title"],
-        "category": scraped_data["category"],
-        "date": scraped_data["date"].isoformat(),
-        "url": scraped_data["url"]
-    }
-    
-    log_info(f"Processed data for {scraped_data['title']}")
-    
-    return {
-        "id": unique_id,
-        "values": embedding,
-        "metadata": metadata
-    }
+    try:
+        embedding = generate_embeddings(scraped_data['content'])
+        unique_id = create_unique_id(scraped_data['url'], scraped_data['date'])
+
+        metadata = {
+            "title": scraped_data["title"],
+            "category": scraped_data["category"],
+            "date": scraped_data["date"].isoformat(),
+            "url": scraped_data["url"]
+        }
+
+        processed_data = {
+            "id": unique_id,
+            "values": embedding,
+            "metadata": metadata
+        }
+        log_info(f"Processed data: {processed_data}")  # Debug log
+        return processed_data
+    except Exception as e:
+        log_info(f"Error processing data: {e}")
+        return None

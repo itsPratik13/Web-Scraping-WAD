@@ -42,7 +42,7 @@
       ]
     },
     "pinecone":{
-        "api_key":"",
+        "api_key":"pcsk_6zhFRD_9HjM2kGQsiRQoYPZb4bJXpnkrdSEFGkwpyEeXUBrEWcadLXyhgdNnreT3zJPXwy",
         "environment":"us-west1-gcp",
         "index_name":"news-index",
         "dimension":300
